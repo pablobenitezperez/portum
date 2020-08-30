@@ -1,4 +1,4 @@
-# Portum (In progress)
+# portum-api (In progress)
 
 The main reason for this project is to learn and practice Java.
 

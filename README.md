@@ -1,6 +1,6 @@
 # portum-api (In progress)
 
-The main reason for this project is to keep up to date Java and its new features in the JDK.
+The main reason for this project is to keep up to date in new software concepts, design patterns,etc... using Java and its new features in the JDK.
 
 It's an API for a butcher app. It allows you to create categories, products, orders, etc...
 

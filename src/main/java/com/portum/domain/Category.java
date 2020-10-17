@@ -1,17 +1,18 @@
 package com.portum.domain;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Category {
+public class Category extends RepresentationModel<Category> {
 
     @Id
     @GeneratedValue(
-            strategy = GenerationType.AUTO,
-            generator = "native"
+            strategy = GenerationType.IDENTITY
     )
     private long id;
 

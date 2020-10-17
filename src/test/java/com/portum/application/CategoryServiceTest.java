@@ -8,8 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 class CategoryServiceTest {
@@ -17,6 +16,7 @@ class CategoryServiceTest {
     private final long ID = 1;
     private final String NAME = "aName";
     private final String DESCRIPTION = "AdESCRIPTION";
+    private final Category CATEGORY = new Category(NAME, DESCRIPTION);
 
     @InjectMocks
     private CategoryService categoryService;
@@ -39,26 +39,27 @@ class CategoryServiceTest {
     */
 
     @Test
+    void addCategory() {
+        Category aCategory = new Category(NAME, DESCRIPTION);
+        aCategory.setId(ID);
+        when(categoryRepository.save(aCategory)).thenReturn(aCategory);
+
+        CATEGORY.setId(ID);
+        Category newCategory = categoryService.addCategory(CATEGORY);
+
+        assertEquals(ID, newCategory.getId());
+    }
+
+    @Test
     void getCategory() {
         Category aCategory = new Category(NAME, DESCRIPTION);
         aCategory.setId(ID);
-        when(categoryRepository.findOneById(ID)).thenReturn(aCategory);
+        when(categoryRepository.findById(ID)).thenReturn(java.util.Optional.of(aCategory));
 
         Category result = categoryService.getCategory(ID);
 
         assertEquals(ID, result.getId());
         assertEquals(NAME, result.getName());
         assertEquals(DESCRIPTION, result.getDescription());
-    }
-
-    @Test
-    void addCategory() {
-        Category aCategory = new Category(NAME, DESCRIPTION);
-        aCategory.setId(ID);
-        when(categoryRepository.save(aCategory)).thenReturn(aCategory);
-
-        long idResult = categoryService.addCategory(NAME, DESCRIPTION);
-
-        assertEquals(ID, idResult);
     }
 }
